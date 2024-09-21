@@ -9,8 +9,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #FFFFFF;
+    --foreground: #171717;
   }
 }
 
@@ -25,3 +25,21 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+@layer components{
+  .footer__title{
+    @apply text-xl text-black mb-6
+  }
+
+  .footer__link{
+    @apply text-black text-[15px] opacity-90 mb-4 w-fit cursor-pointer hover:text-yellow-600
+
+  }
+}
+
