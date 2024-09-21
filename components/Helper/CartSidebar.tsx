@@ -1,5 +1,4 @@
 import { addItem, CartItem, removeItem } from '@/store/cartSlice'
-import { Product } from '@/typing'
 import Image from 'next/image'
 import React from 'react'
 import { Button } from '../ui/button'

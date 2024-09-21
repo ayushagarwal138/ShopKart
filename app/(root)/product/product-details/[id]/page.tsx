@@ -26,7 +26,7 @@ const ProductDetails = async ({params}:{params:{id:string}}) => {
                 <h1 className="lg:text-3xl text-2xl font-bold text-black">{singleProduct.title}</h1>
                 <div className="mt-2 flex items-center space-x-2">
                     <div className="flex items-center">
-                        {ratingArray.map((star)=>{
+                        {ratingArray.map(()=>{
                             return <StarIcon key={Math.random() * 1000}  size={16} fill="yellow" className="text-yellow-500"/>
                         })}
                     </div>

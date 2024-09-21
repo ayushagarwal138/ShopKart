@@ -5,7 +5,6 @@ import { Heart, ShoppingBag, StarIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { start } from 'repl'
 import { Button } from '../ui/button'
 import { addItem } from '@/store/cartSlice';
 import { useDispatch} from 'react-redux';
@@ -48,7 +47,7 @@ const ProductCard = ({product}: Props) => {
             {product.title}</h1>
         </Link>
         <div className="flex items-center">
-            {ratingArray.map((star)  =>{
+            {ratingArray.map(()  =>{
                 return ( <StarIcon key={Math.random() * 1000}  size={16} fill="yellow" className="text-yellow-500"/>);
             })}
         </div>

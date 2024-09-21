@@ -1,7 +1,5 @@
 "use client";
 import { Button } from '@/components/ui/button'
-import { useToast } from '@/hooks/use-toast';
-import { Product } from '@/typing';
 import React from 'react'
 
 

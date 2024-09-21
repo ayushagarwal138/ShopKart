@@ -2,7 +2,7 @@ import React from 'react'
 import SearchBox from '../Helper/SearchBox'
 import { HeartIcon, UserIcon } from 'lucide-react'
 import ShoppingCartButton from '../Helper/ShoppingCartButton'
-import { SignedIn, SignedOut, SignIn, SignInButton, UserButton } from '@clerk/nextjs'
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 
 const Nav = () => {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from '@/components/ui/button';
-import { addItem, CartItem, clearCart, removeItem } from '@/store/cartSlice';
+import { addItem, CartItem, removeItem } from '@/store/cartSlice';
 import { RootState } from '@/store/store'
 import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
@@ -33,7 +33,7 @@ const Cart = () => {
     dispatch(removeItem({id}));
   }
 
-  const handleSuccess=(details:any)=>{
+  const handleSuccess=()=>{
     router.push('./success')
   }
   
