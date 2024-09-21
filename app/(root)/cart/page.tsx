@@ -1,14 +1,17 @@
 "use client";
+
 import { Button } from '@/components/ui/button';
-import { addItem, CartItem, removeItem } from '@/store/cartSlice';
+import { addItem, CartItem, clearCart, removeItem } from '@/store/cartSlice';
 import { RootState } from '@/store/store'
 import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
+import  { useRouter } from 'next/navigation';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Cart = () => {
+  const router= useRouter();
   const dispatch = useDispatch();
   const items = useSelector((state: RootState)=> state.cart.items);
   const totalQuantity = items.reduce(
@@ -28,6 +31,10 @@ const Cart = () => {
 
   const removeItemHandler = (id: number)=>{
     dispatch(removeItem({id}));
+  }
+
+  const handleSuccess=(details:any)=>{
+    router.push('./success')
   }
   
   return (
@@ -105,7 +112,8 @@ const Cart = () => {
               )}
               {
                 user && (
-                  <Button className="w-full bg-blue-400">PayPal</Button>
+                  <Button className="w-full bg-blue-400" 
+                  onClick={handleSuccess}>PayPal</Button>
                 )
               }
             </div>
