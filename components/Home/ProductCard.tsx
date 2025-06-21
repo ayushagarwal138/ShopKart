@@ -4,29 +4,41 @@ import { Product } from '@/typing'
 import { Heart, ShoppingBag, StarIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '../ui/button'
 import { addItem } from '@/store/cartSlice';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { useToast } from '@/hooks/use-toast';
+import { RootState } from '@/store/store';
 
 
 type Props={
     product:Product
 }
 const ProductCard = ({product}: Props) => {
+    const [isWishlisted, setIsWishlisted] = useState(false);
     const num=Math.round(product.rating.rate)
     const ratingArray = new Array(num).fill(0);
     const {toast} = useToast()
 
     
     const dispatch = useDispatch();
+    const cartItems = useSelector((state: RootState) => state.cart.items);
+    const isAddedToCart = cartItems.some((item) => item.id === product.id);
     const addToCartHandler = (product:Product) =>{
         toast({
             description:"Item added to Cart",
             variant:'success',
         })
         dispatch(addItem(product));
+    }
+
+    const handleWishlist = () => {
+        setIsWishlisted(!isWishlisted);
+        toast({
+            description: isWishlisted ? "Item removed from Wishlist" : "Item added to Wishlist",
+            variant: 'success',
+        })
     }
 
 
@@ -58,11 +70,12 @@ const ProductCard = ({product}: Props) => {
         <div className="mt-4 flex items-center space-x-2">
             <Button onClick={()=>{
                 addToCartHandler(product);
-            }} size={"icon"}>
+            }} size={"icon"}
+            variant={isAddedToCart ? 'default' : 'ghost'}>
                 <ShoppingBag size={18}/>
             </Button>
-            <Button size={"icon"}>
-                <Heart size={18} className="bg-red-500" />
+            <Button size={"icon"} variant={'ghost'} onClick={handleWishlist}>
+                <Heart size={18} className={`${isWishlisted && "text-red-500 fill-current"}`} />
             </Button>
         </div>
     </div>
